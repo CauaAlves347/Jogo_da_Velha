@@ -29,12 +29,15 @@ setlocale(LC_ALL,"portuguese");
       a   b   c   d   e
 */}
     int i,j,tab[N][N],contv,contemp,h,a=0,b=0,d=0,e=1,game=0;
-    char coor[2*N],player1[30],player2[30],lastgame[4]="sim",newgame[4]="sim",checkgame[4]="nao";
+    char coor[2*N],player1[30],player2[30],lastgame[4]="yes",newgame[4]="yes",checkgame[3]="no";
 
-    printf("!!! BEM VINDO ALGO MELHOR JOGO DA VELHA !!!");
+    printf("!!! Welcome to the best tic tac toe !!!");
     printf("\n\n");
-    printf("	| As jogadas são feitas a partir das coordenadas do tabuleiro, ex: a3 |\n");
-	printf("	| O jogador ficará com 'X'' e o Jogador 2 com 'O'' 		      |");
+    printf("	+======================================================================================+\n");
+    printf("	|            Moves are made based on the board coordinates, ex: a3                     |\n");
+	printf("	|            Player 1 will have 'X and Player 2 will have 'O' 		               |\n");
+	printf("	|    Whoever makes a line horizontal, vertical or diagonal with 3 characters wins      |\n");	
+	printf("	+======================================================================================+\n");
 	printf("\n\n");
 	system("pause");
 	
@@ -43,17 +46,17 @@ while(strcmp(lastgame,newgame)==0){
 	contemp=N*N;
 	h=0;
 	
-    //preencher tabela
+    //Fill table
     for(i=0;i<N;i++){
         for(j=0;j<N;j++){
             tab[i][j]=0;
         }
     }
     
-    printf("Qual o nome do Jogador 1? ");
+    printf("What's your name Player 1? ");
     scanf("%s",&player1);
     
-    printf("Qual o nome do Jogador 2? ");
+    printf("What's your name Player 2? ");
     scanf("%s",&player2);
     
     system ("cls");
@@ -62,9 +65,9 @@ while(strcmp(lastgame,newgame)==0){
     system ("pause");
     
     
-	//Imprimir tabeiro
+	//Print board
 	system ("cls");
-	printf("!!! COMECEM !!! \n\n");
+	printf("!!! GO !!! \n\n");
 	
     for(i=0;i<N;i++){
     	if(i==0) {
@@ -99,21 +102,21 @@ while(h==0 && contemp!=0){
 
 
 
-	//Jogadas do Jogador 1
+	//Player 1´s moves
 	
 	do{
-	printf("\nQual é sua jogada, %s? ",player1);
+	printf("\nYour turn, %s ",player1);
 	scanf("%s",&coor);
 	a=coor[0]-'a';
-	b=coor[1]-'1';
-	if(a>=N || b>=N) printf("\nSua jogada não é correspondente ao tamanho do tabuleiro!!\nJogue novamente!!\n");
+	b=atoi(coor+0+1)-1;
+	if(a>=N || b>=N) printf("\nYour move does not match the size of the board!!\nPlese, play again!!\n");
 	}while(a>=N || b>=N);
 
 	if(tab[a][b]==0) {
 	tab[a][b]=1;
 	contemp--;
 	
-	//Imprimir tabuleeiro
+	//Print Board
 	system("cls");
     for(i=0;i<N;i++){
     	if(i==0) {
@@ -147,21 +150,52 @@ while(h==0 && contemp!=0){
 	else{
 		d=0;
 		while(d==0){
-			printf("\nJogada inválida!!\n\n Por favor, escolha uma coordenada não ocupada!!\n");
+			system("cls");
+			printf("\nInvalid Move!!\n\n Please, choose a coordinate that is not occupied!!\n");
+			system("Pause");
 			do{
-			printf("Qual é sua jogada, %s? ",player1);
-			scanf("%s",&coor);
-			a=coor[0]-'a';
-			b=coor[1]-'1';
-			if(a>=N || b>=N) printf("\nSua jogada não é correspondente ao tamanho do tabuleiro!!\nJogue novamente!!\n");
+				//Print Board
+				system("cls");
+			    for(i=0;i<N;i++){
+			    	if(i==0) {
+			    		printf("   ");
+						for(j=0;j<N;j++) printf("%d   ",(j+1));
+					}
+					printf("\n");
+					printf(" ");
+			    	for(j=0;j<N;j++){
+			    		printf("+---");
+			    		if(j==N-1)printf("+");
+					}
+					printf("\n");
+					printf("%c",(i+'a'));
+					for(j=0;j<N;j++){
+						if(tab[i][j]==0) {printf("|   "); if(j==N-1)printf("|");}
+			    		else if(tab[i][j]==1) {printf("| X "); if(j==N-1)printf("|");}
+			    		else if(tab[i][j]==2) {printf("| O "); if(j==N-1)printf("|");}
+					}
+					if(i==N-1){
+						printf("\n");
+						printf(" ");
+						for(j=0;j<N;j++){
+				    		printf("+---");
+				    		if(j==N-1)printf("+");
+						}
+					}
+				}
+				printf("\nYour move, %s ",player1);
+				scanf("%s",&coor);
+				a=coor[0]-'a';
+				b=atoi(coor+0+1)-1;
+				if(a>=N || b>=N) printf("\nYour move does not match the size of the board!!\nPlease, play again!!\n");
 			}while(a>=N || b>=N);
 		
 			if(tab[a][b]==0){
 			tab[a][b]=1;
 			contemp--;
-			d=1;
+			d=1; //Checks if the coordinate is occupied
 				system("cls");
-				//Imprimir tabuleeiro
+				//Print Board
 			    for(i=0;i<N;i++){
 			    	if(i==0) {
 			    		printf("   ");
@@ -193,89 +227,78 @@ while(h==0 && contemp!=0){
 		}
 	}
 	
-	//Validar se o jogo acabou a partir de todas as peças ocupadas
+	//Checks if all coordinates are occupied
 	if(contemp==0){
-			printf("\n\n!!! DEU VELHA, NINGUÉM FOI BOM O SUFICIENTE !!!\n\n");
+			printf("\n\n+===========================================================+");
+			printf("    |                                                           |\n");
+			printf("    |              DRAW, All the players were great             |\n");
+			printf("    |                                                           |\n");
+			printf("\n\n+===========================================================+");
+			
 			system("pause");
 			system("cls");
 			do{
 			system("cls");
-			printf("Vocês ainda querem continuar jogando?(sim ou nao, escreva minúsculo e dessa forma)? ");
+			printf("Do you still want to continue playing(yes or no)? ");
 			scanf("%s",&newgame);
 			}while(strcmp(lastgame,newgame)!=0 && strcmp(checkgame,newgame)!=0);
 	break;
 	}
 	
-		//Validar se venceu se Jogaodor 1 venceu
+		//Checks if Player 1 won
 	
-		//Validando Horizontal
-		for(j=0,contv=0;j<N;j++){
-			if(tab[a][j]==1 && tab[a][j+1]==1)contv++;
+		//Checks Horizontal
+		for(j=0;j+2<N;j++){
+			if(tab[a][j]==1 && tab[a][j+1]==1 && tab[a][j+2]==1)h=1 ;
 		}
-		if(contv==2)h=1;
-		
-		//Validando Vertical
+		//Checks Vertical
 		if(h==0){
-			for(i=0,contv=0;i<N;i++){
-				if(tab[i][b]==1 && tab[i+1][b]==1)contv++;
-			}
-			if(contv==2)h=1;
-		}
-		//Validando Diagonal
-		/*
-		contv=0;
-		if(h==0){
-			if(tab[a][b]==1 && tab[a+1][b-1]==1){
-				contv++;
-				if(tab[a+1][b-1]==1 && tab[a+2][b-2]==1) {contv++; h=1;}
-			}
-			if(h==0){
-				contv=0;
-				if(tab[a][b]==2 && tab[a-1][b-1]==2){
-					contv++;
-					if(tab[a-1][b-1]==1 && tab[a-2][b-2]==1) {contv++; h=1;}
-				}
-			}
-			if(h==0){
-				contv=0;
-				if(tab[a][b]==1 && tab[a+1][b+1]==1){
-					contv++;
-					if(tab[a+1][b+1]==1 && tab[a+2][b+2]==1) {contv++; h=1;}
-				}
-			}
-			if(h==0){
-				contv=0;
-				if(tab[a][b]==1 && tab[a-1][b+1]==1){
-					contv++;
-					if(tab[a-1][b+1]==1 && tab[a-2][b+2]==1) {contv++; h=1;}
-				}
+			for(i=0;i+2<N;i++){
+				if(tab[i][b]==1 && tab[i+1][b]==1 && tab[i+2][b]==1)h=1;
 			}
 		}
+		//Checks Diagonal
+
+
+
 		if(h==1){
-			printf("\n\n!!! VITÓRIA DE %s !!!\n",player1);
-			break;
-		}
-	*/
+			system("cls");
+			printf("      +========="); for(i=0;i<4+strlen(player1);i++){printf("=");	}printf("=========+\n");
+			printf("      |         "); for(i=0;i<4+strlen(player1);i++){printf(" "); }printf("         |\n"); 
+			printf("      |         "); printf("%s WINS", player1);printf("        |\n"); 
+			printf("      |         "); for(i=0;i<4+strlen(player1);i++){printf(" "); }printf("         |\n"); 
+			printf("      +========="); for(i=0;i<4+strlen(player1);i++){printf("=");	}printf("=========+\n");
+
+			system("pause");
+			system("cls");
+			do{
+			system("cls");
+			printf("Do you still want to continue playing(yes or no)? ");
+			scanf("%s",&newgame);
+			}while(strcmp(lastgame,newgame)!=0 && strcmp(checkgame,newgame)!=0);
+	break;
+	}
+		
 	
 	
 	
 	
-	//Jogadas do Jogador 2
 	
+	//Player 2´s moves
 	
 	do{
-	printf("\nQual é sua jogada, %s? ",player2);
+	printf("\nYour turn, %s ",player2);
 	scanf("%s",&coor);
 	a=coor[0]-'a';
-	b=coor[1]-'1';
-	if(a>=N || b>=N) printf("\nSua jogada não é correspondente ao tamanho do tabuleiro!!\nJogue novamente!!\n");
+	b=atoi(coor+0+1)-1;
+	if(a>=N || b>=N) printf("\nYour move does not match the size of the board!!\nPlese, play again!!\n");
 	}while(a>=N || b>=N);
 
 	if(tab[a][b]==0) {
 	tab[a][b]=2;
 	contemp--;
 	
-	//Imprimir tabuleeiro
+	//Print Board
 	system("cls");
     for(i=0;i<N;i++){
     	if(i==0) {
@@ -304,24 +327,57 @@ while(h==0 && contemp!=0){
 			}
 		}
 	}
-	
+
 	}
 	else{
+		d=0;
 		while(d==0){
-			printf("\nJogada inválida!!\n\n Por favor, escolha uma coordenada não ocupada!!\n");
+			system("cls");
+			printf("\nInvalid Move!!\n\n Please, choose a coordinate that is not occupied!!\n");
+			system("Pause");
 			do{
-			printf("Qual é sua jogada, %s? ",player2);
-			scanf("%s",&coor);
-			a=coor[0]-'a';
-			b=coor[1]-'1';
-			if(a>=N || b>=N) printf("\nSua jogada não é correspondente ao tamanho do tabuleiro!!\nJogue novamente!!\n");
+				//Print Board
+				system("cls");
+			    for(i=0;i<N;i++){
+			    	if(i==0) {
+			    		printf("   ");
+						for(j=0;j<N;j++) printf("%d   ",(j+1));
+					}
+					printf("\n");
+					printf(" ");
+			    	for(j=0;j<N;j++){
+			    		printf("+---");
+			    		if(j==N-1)printf("+");
+					}
+					printf("\n");
+					printf("%c",(i+'a'));
+					for(j=0;j<N;j++){
+						if(tab[i][j]==0) {printf("|   "); if(j==N-1)printf("|");}
+			    		else if(tab[i][j]==1) {printf("| X "); if(j==N-1)printf("|");}
+			    		else if(tab[i][j]==2) {printf("| O "); if(j==N-1)printf("|");}
+					}
+					if(i==N-1){
+						printf("\n");
+						printf(" ");
+						for(j=0;j<N;j++){
+				    		printf("+---");
+				    		if(j==N-1)printf("+");
+						}
+					}
+				}
+				printf("\nYour move, %s ",player2);
+				scanf("%s",&coor);
+				a=coor[0]-'a';
+				b=atoi(coor+0+1)-1;
+				if(a>=N || b>=N) printf("\nYour move does not match the size of the board!!\nPlease, play again!!\n");
 			}while(a>=N || b>=N);
 		
 			if(tab[a][b]==0){
 			tab[a][b]=2;
 			contemp--;
+			d=1; //Checks if the coordinate is occupied
 				system("cls");
-				//Imprimir tabuleeiro
+				//Print Board
 			    for(i=0;i<N;i++){
 			    	if(i==0) {
 			    		printf("   ");
@@ -353,56 +409,48 @@ while(h==0 && contemp!=0){
 			}
 		}
 	}
-	//Validar se venceu se Jogaodor 2 venceu
+	//Check if player 2 won
 	
-		//Validando Horizontal
-		for(j=0,contv=0;j<N;j++){
-			if(tab[a][j]==2 && tab[a][j+1]==2)contv++;
+		//Checks Horizontal
+		for(j=0;j+2<N;j++){
+			if(tab[a][j]==2 && tab[a][j+1]==2 && tab[a][j+2]==2)h=1 ;
 		}
-		if(contv==2)h=1;
 		
-		//Validando Vertical
+		//Checks Vertical
 		if(h==0){
-			for(i=0,contv=0;i<N;i++){
-				if(tab[i][b]==2 && tab[i+1][b]==2)contv++;
-			}
-			if(contv==2)h=1;
-		}
-		//Validando Diagonal
-		/*
-		contv=0;
-		if(h==0){
-			if(tab[a][b]==2 && tab[a+1][b-1]==2){
-				contv++;
-				if(tab[a+1][b-1]==2 && tab[a+2][b-2]==2) {contv++; h=1;}
-			}
-			if(h==0){
-				contv=0;
-				if(tab[a][b]==2 && tab[a-1][b-1]==2){
-					contv++;
-					if(tab[a-1][b-1]==2 && tab[a-2][b-2]==2) {contv++; h=1;}
-				}
-			}
-			if(h==0){
-				contv=0;
-				if(tab[a][b]==2 && tab[a+1][b+1]==2){
-					contv++;
-					if(tab[a+1][b+1]==2 && tab[a+2][b+2]==2) {contv++; h=1;}
-				}
-			}
-			if(h==0){
-				contv=0;
-				if(tab[a][b]==2 && tab[a-1][b+1]==2){
-					contv++;
-					if(tab[a-1][b+1]==2 && tab[a-2][b+2]==2) {contv++; h=1;}
-				}
+			for(i=0;i+2<N;i++){
+				if(tab[i][b]==2 && tab[i+1][b]==2 && tab[i+2][b]==2)h=1;
 			}
 		}
+		//Checks Diagonal
+		if(h==0){
+			for(i=0,j=0;i+2<N;i++,j++){
+		}
+		}
+		
+		
+		
+		
+
 		if(h==1){
-			printf("!!! VITÓRIA DE %s !!!",player2);
+			system("cls");
+			printf("      +========="); for(i=0;i<4+strlen(player2);i++){printf("=");	}printf("=========+\n");
+			printf("      |         "); for(i=0;i<4+strlen(player2);i++){printf(" "); }printf("         |\n"); 
+			printf("      |         "); printf("%s WINS", player2);printf("        |\n"); 
+			printf("      |         "); for(i=0;i<4+strlen(player2);i++){printf(" "); }printf("         |\n"); 
+			printf("      +========="); for(i=0;i<4+strlen(player2);i++){printf("=");	}printf("=========+\n");
+			
+			system("pause");
+			system("cls");
+			do{
+			system("cls");
+			printf("Do you still want to continue playing(yes or no)? ");
+			scanf("%s",&newgame);
+			}while(strcmp(lastgame,newgame)!=0 && strcmp(checkgame,newgame)!=0);
+		break;
 		}
 	
-	*/
+
 }
     
     
