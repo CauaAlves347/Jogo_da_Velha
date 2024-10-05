@@ -1,6 +1,6 @@
-# Jogo_da_Velha
-Primeira tentativa de criação de um jogo, jogo esse estilo jogo da velha
+# Tic_tca_Toe
+First attempt at creating a game, I play this tic-tac-toe style
 
-O jogo possui dois jogadores, farão sua jogadas em um tabuleira N x N, através de coordenadas indicada já no início do códido, exemplo: a1, b4, etc.
+The game has two players, they will make their moves on an N x N table, using the coordinates indicated at the beginning of the code, example: a1, b4, etc.
 
-O jogo é finalizado quando todas as casas do tabuleiro forem preenchidas ou algum dos dois jogadores conseguirem montar um linha de 3 caracteres, X ou O, independente do tamanho do tabuleiro.
+The game ends when all spaces on the board are filled or one of the two players manages to form a line of 3 characters, X or O, regardless of the size of the board.
