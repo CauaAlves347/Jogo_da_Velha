@@ -1,4 +1,4 @@
-# Tic_tca_Toe
+# Tic_tac_Toe
 First attempt at creating a game, I play this tic-tac-toe style
 
 The game has two players, they will make their moves on an N x N table, using the coordinates indicated at the beginning of the code, example: a1, b4, etc.
