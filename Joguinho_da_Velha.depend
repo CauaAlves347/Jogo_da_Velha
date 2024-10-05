@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1728069166 source:c:\users\ufca\downloads\jogo_da_velha-master\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+
+1728091248 source:c:\users\maria\downloads\cauã\jogo_da_velha-master\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	<string.h>
+
