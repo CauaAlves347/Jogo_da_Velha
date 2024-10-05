@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
+#include <time.h>
 #define N 10
 
 int main()
 {
 setlocale(LC_ALL,"portuguese");
-    int i,j,tab[N][N],contemp,h,a,b,e,lastgame=0,game=0;
+srand(time(NULL)); // For randomness of loading
+
+    int i,j,tab[N][N],contemp,h,a,b,e=0,lastgame=0,game=0;
     char coor[2*N],player1[30],player2[30];
 	char options[8]="options", transition[10];
 	char newgame[10]="newgame";
@@ -15,9 +18,36 @@ setlocale(LC_ALL,"portuguese");
 	char credits[8]="credits",checkcredits[8];
 	char menu[5]="menu";
 
-
-
 while(lastgame==0){
+
+	system("color 0F");
+	//Loading screen
+    for(int i=0;i<rand()%6;i++){
+        system("cls");
+        printf("Loading\no------");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-o-----");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n--o----");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n---o---");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n----o--");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-----o-");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n------o");
+        Sleep(50);
+    }
+    system("cls");
+    printf("Loading complete\n\n");
+    sleep(1);
 
 while(game==0){
 
@@ -35,11 +65,40 @@ do{
 	printf("	|                          ");for(i=0;i<2;i++){printf("                          ");}printf("|\n");
 	printf("	+==============================================================================+\n");
 	printf("\n\n");
-	printf("Please, write what you want to do: \n\n");
+	printf("Please, write what you want to do the menu: \n\n");
 	scanf("%s",&transition);
 	}while(strcmp(transition,options)!=0 && strcmp(transition,newgame)!=0 && strcmp(transition,credits)!=0 && strcmp(transition,exit)!=0);
 
 	if(strcmp(transition,options)==0){
+
+	//Loading screen
+    for(int i=0;i<rand()%6;i++){
+        system("cls");
+        printf("Loading\no------");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-o-----");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n--o----");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n---o---");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n----o--");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-----o-");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n------o");
+        Sleep(50);
+    }
+    system("cls");
+    printf("Loading complete\n\n");
+    sleep(1);
+
 	system("cls");
     printf("\n\n");
     printf("	+================================================================================================+\n");
@@ -57,8 +116,58 @@ do{
 	getchar();
 
 	}else if(strcmp(transition,newgame)==0 ){
+	//Loading screen
+	//Loading screen
+    for(int i=0;i<rand()%4;i++){
+        system("cls");
+        printf("Loading\no------");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-o----");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n--o---");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n---o--");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n----o-");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-----o");
+        Sleep(50);
+    }
+    system("cls");
+    printf("Loading complete\n\n");
+    sleep(1);
     break;
 	}else if(strcmp(transition,credits)==0){
+	//Loading screen
+    for(int i=0;i<rand()%4;i++){
+        system("cls");
+        printf("Loading\no------");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-o----");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n--o---");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n---o--");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n----o-");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-----o");
+        Sleep(50);
+    }
+    system("cls");
+    printf("Loading complete\n\n");
+    sleep(1);
+
 	system("cls");
     printf("\n\n");
     printf("	+================================================================================================+\n");
@@ -72,6 +181,31 @@ do{
     getchar();
 
 	}else if(strcmp(transition,exit)==0){
+	//Loading screen
+    for(int i=0;i<rand()%4;i++){
+        system("cls");
+        printf("Loading\no------");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-o----");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n--o---");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n---o--");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n----o-");
+        Sleep(50);
+        system("cls");
+        printf("Loading\n-----o");
+        Sleep(50);
+    }
+    system("cls");
+    printf("Loading complete\n\n");
+    printf("Thank you for playing !!\n");
+    sleep(1);
     return 0;
 	}
 }
@@ -99,8 +233,6 @@ do{
 	printf("Press any key to continue. . .");
 	getchar();
 
-while(h==0 && contemp!=0){
-	//Print board
 	system ("cls");
     printf(" ");
     if(N>3){
@@ -110,12 +242,16 @@ while(h==0 && contemp!=0){
     }
     printf("!!! GO !!!\n");
 
+while(h==0 && contemp!=0){
 
 	//Player 1´s moves
-
+	system("cls");
+    system("color 0F");
     do{
         //Print Board
     system("cls");
+    if(e==1)	system("color 0C");
+    if(e==2)	system("color 0C");
     for(i=0;i<N;i++){
         if(i==0){
             printf("   ");
@@ -161,39 +297,10 @@ while(h==0 && contemp!=0){
 	contemp--;
 	e=0;//It prints the notices correctly
 
-	//Print Board
-	system("cls");
-    for(i=0;i<N;i++){
-    	if(i==0) {
-    		printf("   ");
-			for(j=0;j<N;j++) printf("%d   ",(j+1));
-		}
-		printf("\n");
-		printf(" ");
-    	for(j=0;j<N;j++){
-    		printf("+---");
-    		if(j==N-1)printf("+");
-		}
-		printf("\n");
-		printf("%c",(i+'a'));
-		for(j=0;j<N;j++){
-			if(tab[i][j]==0) {printf("|   "); if(j==N-1)printf("|");}
-    		else if(tab[i][j]==1) {printf("| X "); if(j==N-1)printf("|");}
-    		else if(tab[i][j]==2) {printf("| O "); if(j==N-1)printf("|");}
-		}
-		if(i==N-1){
-			printf("\n");
-			printf(" ");
-			for(j=0;j<N;j++){
-	    		printf("+---");
-	    		if(j==N-1)printf("+");
-			}
-		}
-	}
-
 	//Checks if all coordinates are occupied
 	if(contemp==0){
             system("cls");
+        	system("color 0B");
 			printf("    +===========================================================+\n");
 			printf("    |                                                           |\n");
 			printf("    |              DRAW, All the players were great             |\n");
@@ -203,6 +310,7 @@ while(h==0 && contemp!=0){
             printf("Press any key to continue. . .");
             getchar();
             getchar();
+            system("cls");
 	break;
 	}
 
@@ -234,6 +342,7 @@ while(h==0 && contemp!=0){
 
 		if(h==1){
 			system("cls");
+        	system("color 0A");
 			printf("      +========="); for(i=0;i<4+strlen(player1);i++){printf("=");	}printf("=========+\n");
 			printf("      |         "); for(i=0;i<4+strlen(player1);i++){printf(" "); }printf("         |\n");
 			printf("      |         "); printf("%s WINS", player1);printf("        |\n");
@@ -243,6 +352,7 @@ while(h==0 && contemp!=0){
             printf("Press any key to continue. . .");
             getchar();
             getchar();
+            system("cls");
 	break;
 	}
 
@@ -253,8 +363,12 @@ while(h==0 && contemp!=0){
 
 	//Player 2´s moves
 
+	system("cls");
+    system("color 0F");
     do{
         //Print Board
+    if(e==1)	system("color 0C");
+    if(e==2)	system("color 0C");
         system("cls");
         for(i=0;i<N;i++){
             if(i==0) {
@@ -299,36 +413,6 @@ while(h==0 && contemp!=0){
 	contemp--;
 	e=0;//It prints the notices correctly
 
-	//Print Board
-	system("cls");
-    for(i=0;i<N;i++){
-    	if(i==0) {
-    		printf("   ");
-			for(j=0;j<N;j++) printf("%d   ",(j+1));
-		}
-		printf("\n");
-		printf(" ");
-    	for(j=0;j<N;j++){
-    		printf("+---");
-    		if(j==N-1)printf("+");
-		}
-		printf("\n");
-		printf("%c",(i+'a'));
-		for(j=0;j<N;j++){
-			if(tab[i][j]==0) {printf("|   "); if(j==N-1)printf("|");}
-    		else if(tab[i][j]==1) {printf("| X "); if(j==N-1)printf("|");}
-    		else if(tab[i][j]==2) {printf("| O "); if(j==N-1)printf("|");}
-		}
-		if(i==N-1){
-			printf("\n");
-			printf(" ");
-			for(j=0;j<N;j++){
-	    		printf("+---");
-	    		if(j==N-1)printf("+");
-			}
-		}
-	}
-
 	//Check if player 2 won
 
 		//Checks Horizontal
@@ -359,6 +443,7 @@ while(h==0 && contemp!=0){
 
 		if(h==1){
 			system("cls");
+        	system("color 0A");
 			printf("      +========="); for(i=0;i<4+strlen(player2);i++){printf("=");	}printf("=========+\n");
 			printf("      |         "); for(i=0;i<4+strlen(player2);i++){printf(" "); }printf("         |\n");
 			printf("      |         "); printf("%s WINS", player2);printf("        |\n");
@@ -368,6 +453,7 @@ while(h==0 && contemp!=0){
 			printf("Press any key to continue. . .");
             getchar();
             getchar();
+            system("cls");
 		break;
 		}
 
@@ -382,4 +468,3 @@ while(h==0 && contemp!=0){
 
 
 }
-
