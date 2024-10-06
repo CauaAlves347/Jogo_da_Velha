@@ -3,7 +3,7 @@
 #include <locale.h>
 #include <string.h>
 #include <time.h>
-#define N 10
+#define N 3
 
 int main()
 {
@@ -107,7 +107,7 @@ do{
 	printf("	|    of 3 identical characters whether diagonally, vertically or horizontally, however           |\n");
 	printf("	|    not just on a 3x3 board but even on a 26X26 board, still with the same way of winning.      |\n");
 	printf("	|    The moves are made indicating the coordinates of the board, such as: a3, d6;                |\n");
-	printf("	|           Obs: Player 1 will have 'X and Player 2 will have 'O'                                |\n");
+	printf("	|           Note: Player 1 will have 'X and Player 2 will have 'O'                               |\n");
 	printf("	|                                ");for(i=0;i<2;i++){printf("                                ");}printf("|\n");
 	printf("	+================================================================================================+\n");
 	printf("\n\n");
@@ -120,7 +120,7 @@ do{
 	//Loading screen
     for(int i=0;i<rand()%4;i++){
         system("cls");
-        printf("Loading\no------");
+        printf("Loading\no-----");
         Sleep(50);
         system("cls");
         printf("Loading\n-o----");
@@ -184,7 +184,7 @@ do{
 	//Loading screen
     for(int i=0;i<rand()%4;i++){
         system("cls");
-        printf("Loading\no------");
+        printf("Loading\no-----");
         Sleep(50);
         system("cls");
         printf("Loading\n-o----");
@@ -232,15 +232,7 @@ do{
     printf("!!! Are you ready?? !!! \n");
 	printf("Press any key to continue. . .");
 	getchar();
-
-	system ("cls");
-    printf(" ");
-    if(N>3){
-        for(i=0;i<N-3;i++){
-        printf("  ");
-        }
-    }
-    printf("!!! GO !!!\n");
+	getchar();
 
 while(h==0 && contemp!=0){
 
@@ -266,7 +258,7 @@ while(h==0 && contemp!=0){
     		if(j==N-1)printf("+");
 		}
 		printf("\n");
-		printf("%c",(i+'a'));
+		printf("%c",('a'+i));
 		for(j=0;j<N;j++){
 			if(tab[i][j]==0) {printf("|   "); if(j==N-1)printf("|");}
     		else if(tab[i][j]==1) {printf("| X "); if(j==N-1)printf("|");}
