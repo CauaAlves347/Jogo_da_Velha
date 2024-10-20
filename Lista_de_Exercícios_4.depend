@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1726447077 source:c:\users\maria\downloads\cauã\lista_de_exercício_4\lista_de_exercícios_4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
